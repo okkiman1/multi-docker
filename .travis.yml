@@ -22,3 +22,15 @@ after_success:
   - docker push okkiman/multi-nginx
   - docker push okkiman/multi-server
   - docker push okkiman/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-west-3'
+  app: 'lars-multi-docker'
+  env: 'Larsmultidocker-env'
+  bucket_name: 'elasticbeanstalk-eu-west-3-281107313981'
+  bucket_path: 'lars-multi-docker'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
